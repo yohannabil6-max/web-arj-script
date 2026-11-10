@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KUMPULAN SCRIPT ARJ</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    border-radius: 12px; 
+  }
+
+  body {
+    min-height: 100vh;
+    background: #0a0000;
+    background-image: radial-gradient(circle at 50% 0%, #2a0000 0%, #0a0000 60%, #050000 100%);
+    color: #fff;
+    padding: 20px;
+    position: relative;
+  }
+
+  /* ===== WRAPPER TOMBOL POJOK KANAN ATAS ===== */
+  .admin-corner {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 100;
+    display: flex;
+    gap: 8px; /* Jarak antar tombol */
+    align-items: center;
+  }
+
+  /* ===== DESAIN DASAR TOMBOL POJOK ===== */
+  .btn-corner {
+    background: linear-gradient(145deg, #3a0000, #1a0000);
+    border: 1px solid #ff2b2b;
+    padding: 8px 14px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: 0.25s;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+    border-radius: 20px;
+    text-decoration: none; /* Untuk tag <a> */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ff4d4d;
+  }
+
+  /* Warna Khusus Tombol HUB ADMIN & GB ARJ */
+  .btn-hub {
+    color: #ffcc00;
+    border-color: #ffcc00;
+    box-shadow: 0 0 10px rgba(255, 204, 0, 0.2);
+  }
+  .btn-hub:hover, .btn-hub:active {
+    background: #ffcc00;
+    color: #000;
+    box-shadow: 0 0 15px rgba(255, 204, 0, 0.6);
+  }
+
+  .btn-gb {
+    color: #00ff88;
+    border-color: #00ff88;
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.2);
+  }
+  .btn-gb:hover, .btn-gb:active {
+    background: #00ff88;
+    color: #000;
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.6);
+  }
+
+  /* Warna Tombol Login/Logout Admin */
+  .btn-admin {
+    color: #ff4d4d;
+  }
+  .btn-admin:hover, .btn-admin:active {
+    background: #ff2b2b;
+    color: #fff;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
+  }
+
+  /* ===== HEADER ===== */
+  .header {
+    text-align: center;
+    padding: 60px 10px 20px; /* Padding atas ditambah agar tidak tertutup tombol pojok */
+  }
+
+  .header h1 {
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #ff2b2b;
+    text-shadow: 0 0 10px #ff0000, 0 0 25px #ff0000, 0 0 50px #990000;
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes glow {
+    from { text-shadow: 0 0 10px #ff0000, 0 0 25px #ff0000, 0 0 50px #990000; }
+    to   { text-shadow: 0 0 18px #ff4444, 0 0 45px #ff0000, 0 0 80px #cc0000; }
+  }
+
+  .header p {
+    margin-top: 8px;
+    color: #ff9999;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    font-weight: 700;
+  }
+
+  /* ===== SEARCH BAR (Menu Pencarian) ===== */
+  .search-container {
+    max-width: 500px;
+    margin: 0 auto 30px;
+    padding: 0 10px;
+  }
+
+  .search-container input {
+    width: 100%;
+    padding: 12px 20px;
+    background: #1a0505;
+    border: 1px solid #ff2b2b;
+    color: #fff;
+    font-size: 0.9rem;
+    border-radius: 30px;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
+    transition: 0.3s;
+  }
+
+  .search-container input::placeholder { color: #ff9999; }
+
+  .search-container input:focus {
+    outline: none;
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.5);
+    background: #2a0505;
+  }
+
+  /* ===== GRID SCRIPT ===== */
+  .script-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding-bottom: 40px;
+  }
+
+  .script-card {
+    background: linear-gradient(160deg, #1a0000, #0d0000);
+    border: 1px solid #ff2b2b;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .script-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.5);
+  }
+
+  .script-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-bottom: 1px solid #ff2b2b;
+    background: #000;
+  }
+
+  .card-body { padding: 16px; flex: 1; display: flex; flex-direction: column; }
+
+  .card-body h4 {
+    color: #ff4d4d;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-shadow: 0 0 8px rgba(255, 0, 0, 0.5);
+  }
+
+  .card-body .desc {
+    font-size: 0.85rem;
+    color: #ddd;
+    margin-bottom: 15px;
+    line-height: 1.4;
+    flex: 1;
+    font-weight: 500;
+  }
+
+  .copy-btn {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(145deg, #3a0000, #1a0000);
+    border: 1px solid #ff2b2b;
+    color: #ff4d4d;
+    font-weight: 800;
+    letter-spacing: 1px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.25s;
+    font-size: 0.9rem;
+  }
+
+  .copy-btn:hover {
+    background: #ff2b2b;
+    color: #fff;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+  }
+
+  .copy-btn.copied {
+    border-color: #00ff88;
+    color: #00ff88;
+  }
+
+  /* ===== MODAL (POP-UP) ===== */
+  .modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 999;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    backdrop-filter: blur(4px);
+  }
+
+  .modal.show { display: flex; }
+
+  .modal-box {
+    background: #140000;
+    border: 1px solid #ff2b2b;
+    padding: 25px;
+    border-radius: 16px;
+    max-width: 450px;
+    width: 100%;
+    box-shadow: 0 0 35px rgba(255, 0, 0, 0.6);
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .modal-box h3 {
+    color: #ff4d4d;
+    margin-bottom: 20px;
+    text-align: center;
+    letter-spacing: 2px;
+    font-size: 1.2rem;
+  }
+
+  .modal-box input, .modal-box textarea {
+    width: 100%;
+    padding: 12px;
+    background: #0a0000;
+    border: 1px solid #ff2b2b;
+    color: #fff;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+  }
+
+  .modal-box textarea {
+    min-height: 120px;
+    font-family: monospace;
+    resize: vertical;
+  }
+
+  .modal-box input:focus, .modal-box textarea:focus {
+    outline: none;
+    box-shadow: 0 0 12px rgba(255, 0, 0, 0.8);
+  }
+
+  .modal-box label {
+    display: block;
+    margin-bottom: 5px;
+    color: #ff9999;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  .modal-actions { display: flex; gap: 10px; margin-top: 15px; }
+  
+  .btn {
+    padding: 10px 20px;
+    font-weight: 700;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.2s;
+    text-align: center;
+    flex: 1;
+    border: none;
+  }
+
+  .btn-green { background: #00ff88; color: #000; }
+  .btn-green:hover { background: #00cc6a; box-shadow: 0 0 15px rgba(0, 255, 136, 0.5); }
+  
+  .btn-red { background: #ff2b2b; color: #fff; }
+  .btn-red:hover { background: #cc0000; box-shadow: 0 0 15px rgba(255, 0, 0, 0.5); }
+
+  .btn-outline { background: transparent; border: 1px solid #ff2b2b; color: #ff4d4d; }
+  .btn-outline:hover { background: #3a0000; }
+
+  .admin-card-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  
+  .admin-card-actions button {
+    flex: 1;
+    padding: 8px;
+    font-size: 0.75rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 700;
+  }
+
+  .empty-msg {
+    text-align: center;
+    color: #ff9999;
+    padding: 50px 10px;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+    grid-column: 1 / -1;
+    font-weight: 600;
+  }
+
+  /* Toast */
+  .toast {
+    position: fixed;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: #1a0000;
+    border: 1px solid #00ff88;
+    color: #00ff88;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    opacity: 0;
+    transition: 0.3s;
+    z-index: 1000;
+    font-weight: 700;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+
+  <!-- ================= POJOK KANAN ATAS ================= -->
+  <div class="admin-corner">
+    <!-- Tombol 1: HUB ADMIN -->
+    <a href="https://wa.me/6282142469540?text=halo%20admin%20ganteng" target="_blank" class="btn-corner btn-hub">
+      💬 HUB ADMIN
+    </a>
+    
+    <!-- Tombol 2: GB ARJ -->
+    <a href="https://chat.whatsapp.com/JyxQHgeCov2IGM1rhNHRFJ?s=cl&p=a&iam=2" target="_blank" class="btn-corner btn-gb">
+      👥 GB ARJ
+    </a>
+
+    <!-- Tombol 3: Login/Logout Admin -->
+    <button class="btn-corner btn-admin" id="loginBtn">🔒 LOGIN ADMIN</button>
+    <button class="btn-corner btn-gb" id="logoutBtn" style="display:none;">🚪 LOGOUT</button>
+  </div>
+
+  <!-- HEADER / HOME -->
+  <div class="header">
+    <h1>KUMPULAN SCRIPT ARJ</h1>
+    <p>ARJ ONTOP #YOHANGANTENG</p>
+  </div>
+
+  <!-- MENU PENCARIAN SCRIPT -->
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="🔍 Cari script di sini...">
+  </div>
+
+  <!-- DAFTAR SCRIPT (TAMPILAN ORANG LAIN) -->
+  <div class="script-grid" id="scriptGrid">
+    <!-- Diisi oleh JavaScript -->
+  </div>
+
+  <!-- ================= MODAL LOGIN ================= -->
+  <div class="modal" id="loginModal">
+    <div class="modal-box">
+      <h3>🔐 LOGIN ADMIN</h3>
+      <input type="password" id="passwordInput" placeholder="Masukkan Password" maxlength="20" style="text-align:center; letter-spacing:3px; font-size:1.2rem;">
+      <div class="modal-actions">
+        <button class="btn btn-green" id="submitLogin">MASUK</button>
+        <button class="btn btn-red" id="closeLogin">BATAL</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL FORM ADMIN (UPLOAD/EDIT) ================= -->
+  <div class="modal" id="adminFormModal">
+    <div class="modal-box">
+      <h3 id="formTitle">⚙️ UPLOAD SCRIPT BARU</h3>
+      
+      <label>Judul Script</label>
+      <input type="text" id="scriptTitle" placeholder="Contoh: Auto Farm Blox Fruits">
+
+      <label>Link Gambar (Thumbnail)</label>
+      <input type="text" id="scriptImage" placeholder="https://imagetourl.cloud/...">
+
+      <label>Deskripsi Singkat</label>
+      <input type="text" id="scriptDesc" placeholder="Deskripsi script...">
+
+      <label>Isi Script (Raw Code)</label>
+      <textarea id="scriptContent" placeholder="-- tempel script roblox di sini --"></textarea>
+
+      <div class="modal-actions">
+        <button class="btn btn-green" id="saveBtn">💾 SIMPAN SCRIPT</button>
+        <button class="btn btn-outline" id="closeFormBtn">TUTUP</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFIKASI -->
+  <div class="toast" id="toast">✔ Berhasil</div>
+
+<script>
+/* ================= KONFIGURASI ================= */
+const ADMIN_PASSWORD = "11";
+const STORAGE_KEY = "arj_scripts";
+const LOGIN_KEY = "arj_admin_logged";
+
+/* ================= STATE ================= */
+let scripts = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+let editingId = null;
+let isAdmin = sessionStorage.getItem(LOGIN_KEY) === "true";
+
+/* ================= ELEMENT ================= */
+const $ = id => document.getElementById(id);
+const grid = $("scriptGrid");
+const loginBtn = $("loginBtn");
+const logoutBtn = $("logoutBtn");
+const loginModal = $("loginModal");
+const adminFormModal = $("adminFormModal");
+const toast = $("toast");
+const searchInput = $("searchInput");
+
+/* ================= UTIL ================= */
+function showToast(msg, color = "#00ff88") {
+  toast.textContent = msg;
+  toast.style.borderColor = color;
+  toast.style.color = color;
+  toast.classList.add("show");
+  clearTimeout(toast._t);
+  toast._t = setTimeout(() => toast.classList.remove("show"), 2500);
+}
+
+function saveData() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(scripts));
+}
+
+function escapeHtml(str) {
+  const d = document.createElement("div");
+  d.textContent = str;
+  return d.innerHTML;
+}
+
+/* ================= RENDER (TAMPILAN HOME) ================= */
+function render(filterText = "") {
+  grid.innerHTML = "";
+
+  const filtered = scripts.filter(sc => 
+    sc.title.toLowerCase().includes(filterText.toLowerCase()) || 
+    sc.desc.toLowerCase().includes(filterText.toLowerCase())
+  );
+
+  if (filtered.length === 0) {
+    grid.innerHTML = `<div class="empty-msg">Belum ada script yang tersedia.<br><br>${isAdmin ? 'Silakan klik tombol + UPLOAD SCRIPT di pojok kanan bawah.' : 'Silakan cek kembali nanti.'}</div>`;
+    return;
+  }
+
+  filtered.forEach(sc => {
+    const card = document.createElement("div");
+    card.className = "script-card";
+    
+    let adminButtons = "";
+    if (isAdmin) {
+      adminButtons = `
+        <div class="admin-card-actions">
+          <button class="btn-outline" data-edit="${sc.id}">✏️ EDIT</button>
+          <button class="btn-red" data-del="${sc.id}">🗑️ HAPUS</button>
+        </div>
+      `;
+    }
+
+    card.innerHTML = `
+      <img src="${escapeHtml(sc.image)}" alt="${escapeHtml(sc.title)}" onerror="this.src='https://placehold.co/600x400/1a0000/ff2b2b?text=No+Image'">
+      <div class="card-body">
+        <h4>${escapeHtml(sc.title)}</h4>
+        <div class="desc">${escapeHtml(sc.desc || "-")}</div>
+        <button class="copy-btn" data-id="${sc.id}">📋 COPY SCRIPT</button>
+        ${adminButtons}
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+
+  grid.querySelectorAll(".copy-btn").forEach(btn => {
+    btn.addEventListener("click", () => copyScript(btn.dataset.id, btn));
+  });
+
+  if (isAdmin) {
+    grid.querySelectorAll("[data-edit]").forEach(btn =>
+      btn.addEventListener("click", () => startEdit(btn.dataset.edit))
+    );
+    grid.querySelectorAll("[data-del]").forEach(btn =>
+      btn.addEventListener("click", () => deleteScript(btn.dataset.del))
+    );
+  }
+}
+
+/* ================= FITUR PENCARIAN ================= */
+searchInput.addEventListener("input", (e) => {
+  render(e.target.value);
+});
+
+/* ================= COPY SCRIPT ================= */
+function copyScript(id, btn) {
+  const sc = scripts.find(s => s.id === id);
+  if (!sc) return;
+
+  const doCopy = (text) => {
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = "✔ TERSALIN!";
+        btn.classList.add("copied");
+        showToast("Script berhasil disalin!");
+        setTimeout(() => {
+          btn.textContent = "📋 COPY SCRIPT";
+          btn.classList.remove("copied");
+        }, 2000);
+      });
+    } else {
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      try {
+        document.execCommand("copy");
+        btn.textContent = "✔ TERSALIN!";
+        btn.classList.add("copied");
+        showToast("Script berhasil disalin!");
+        setTimeout(() => {
+          btn.textContent = "📋 COPY SCRIPT";
+          btn.classList.remove("copied");
+        }, 2000);
+      } catch (e) {
+        showToast("Gagal menyalin", "#ff2b2b");
+      }
+      document.body.removeChild(ta);
+    }
+  };
+
+  doCopy(sc.content);
+}
+
+/* ================= LOGIN / LOGOUT ================= */
+loginBtn.addEventListener("click", () => {
+  loginModal.classList.add("show");
+  $("passwordInput").value = "";
+  setTimeout(() => $("passwordInput").focus(), 100);
+});
+
+$("closeLogin").addEventListener("click", () => loginModal.classList.remove("show"));
+
+$("submitLogin").addEventListener("click", tryLogin);
+$("passwordInput").addEventListener("keydown", e => {
+  if (e.key === "Enter") tryLogin();
+});
+
+function tryLogin() {
+  const pw = $("passwordInput").value;
+  if (pw === ADMIN_PASSWORD) {
+    isAdmin = true;
+    sessionStorage.setItem(LOGIN_KEY, "true");
+    loginModal.classList.remove("show");
+    updateAdminUI();
+    render(searchInput.value);
+    showToast("Login admin berhasil!");
+  } else {
+    showToast("Password salah!", "#ff2b2b");
+    $("passwordInput").value = "";
+  }
+}
+
+logoutBtn.addEventListener("click", () => {
+  isAdmin = false;
+  sessionStorage.removeItem(LOGIN_KEY);
+  updateAdminUI();
+  render(searchInput.value);
+  showToast("Logout berhasil", "#ff9999");
+});
+
+function updateAdminUI() {
+  if (isAdmin) {
+    loginBtn.style.display = "none";
+    logoutBtn.style.display = "inline-block";
+  } else {
+    loginBtn.style.display = "inline-block";
+    logoutBtn.style.display = "none";
+  }
+}
+
+/* ================= FORM ADMIN ================= */
+function openForm(isEdit = false) {
+  adminFormModal.classList.add("show");
+  if (!isEdit) {
+    $("formTitle").textContent = "⚙️ UPLOAD SCRIPT BARU";
+    $("scriptTitle").value = "";
+    $("scriptImage").value = "";
+    $("scriptDesc").value = "";
+    $("scriptContent").value = "";
+    editingId = null;
+  } else {
+    $("formTitle").textContent = "✏️ EDIT SCRIPT";
+  }
+}
+
+$("closeFormBtn").addEventListener("click", () => {
+  adminFormModal.classList.remove("show");
+  editingId = null;
+});
+
+$("saveBtn").addEventListener("click", () => {
+  const title = $("scriptTitle").value.trim();
+  const image = $("scriptImage").value.trim();
+  const desc  = $("scriptDesc").value.trim();
+  const content = $("scriptContent").value.trim();
+
+  if (!title || !content) {
+    showToast("Judul & isi script wajib diisi!", "#ff2b2b");
+    return;
+  }
+
+  if (editingId) {
+    const sc = scripts.find(s => s.id === editingId);
+    sc.title = title;
+    sc.image = image || "https://placehold.co/600x400/1a0000/ff2b2b?text=No+Image";
+    sc.desc = desc;
+    sc.content = content;
+    showToast("Script berhasil diupdate!");
+  } else {
+    scripts.unshift({
+      id: Date.now().toString(),
+      title,
+      image: image || "https://placehold.co/600x400/1a0000/ff2b2b?text=No+Image",
+      desc,
+      content
+    });
+    showToast("Script berhasil diupload!");
+  }
+
+  saveData();
+  adminFormModal.classList.remove("show");
+  editingId = null;
+  render(searchInput.value);
+});
+
+function startEdit(id) {
+  const sc = scripts.find(s => s.id === id);
+  if (!sc) return;
+  editingId = id;
+  
+  $("scriptTitle").value = sc.title;
+  $("scriptImage").value = sc.image;
+  $("scriptDesc").value = sc.desc;
+  $("scriptContent").value = sc.content;
+  
+  openForm(true);
+}
+
+function deleteScript(id) {
+  if (!confirm("Yakin hapus script ini?")) return;
+  scripts = scripts.filter(s => s.id !== id);
+  saveData();
+  render(searchInput.value);
+  showToast("Script dihapus", "#ff2b2b");
+}
+
+/* ================= TOMBOL TAMBAH SCRIPT ================= */
+function updateAdminUI() {
+  if (isAdmin) {
+    loginBtn.style.display = "none";
+    logoutBtn.style.display = "inline-block";
+    
+    if (!document.getElementById("fabAdd")) {
+      const fab = document.createElement("button");
+      fab.id = "fabAdd";
+      fab.innerHTML = "+ UPLOAD SCRIPT";
+      fab.style.cssText = `
+        position: fixed; bottom: 25px; right: 25px; z-index: 500;
+        background: #00ff88; color: #000; border: none; padding: 15px 25px;
+        border-radius: 30px; font-weight: 900; cursor: pointer;
+        box-shadow: 0 0 20px rgba(0, 255, 136, 0.6); font-size: 0.9rem;
+        transition: 0.2s;
+      `;
+      fab.onmouseover = () => fab.style.transform = "scale(1.05)";
+      fab.onmouseout = () => fab.style.transform = "scale(1)";
+      fab.onclick = () => openForm(false);
+      document.body.appendChild(fab);
+    }
+  } else {
+    loginBtn.style.display = "inline-block";
+    logoutBtn.style.display = "none";
+    
+    const fab = document.getElementById("fabAdd");
+    if (fab) fab.remove();
+  }
+}
+
+/* ================= INIT ================= */
+updateAdminUI();
+render();
+</script>
+</body>
+</html>
